@@ -2,28 +2,28 @@
 //
 // Clase TNELDERMEAD
 //
-// Clase Template que aplica el algoritmo Nelder-Mead con restricción.
-// Funciona para cualquier función con infinitos valores de x-->{x[0],x[1],x[2]...}
+// Clase Template que aplica el algoritmo Nelder-Mead con restricciÃ³n.
+// Funciona para cualquier funciÃ³n con infinitos valores de x-->{x[0],x[1],x[2]...}
 //
 //
-// Adaptació a C++  de la implementació de
-// Michael F. Hutt 1997 del métode simplex Nelder-Mead.
+// AdaptaciÃ³ a C++  de la implementaciÃ³ de
+// Michael F. Hutt 1997 del mÃ©tode simplex Nelder-Mead.
 //
 // =================================================================== 03/12/2018
 
 // =================================================================== EJEMPLO DE FUNCIONAMIENTO
 //
-// Función objetivo: y = 50x^4 - 5x^2 + x - 1
-// Restricción:      x < 30 (introducida como una penalización)
+// FunciÃ³n objetivo: y = 50x^4 - 5x^2 + x - 1
+// RestricciÃ³n:      x < 30 (introducida como una penalizaciÃ³n)
 // Valor inicial: x = 5
 //
 // std::vector<REAL_> start(1); start[0] = 5.0; //Valor inicial tentativo
-// auto Fn = [&](std::vector<REAL_> &x) ->REAL_ {return 50.0*x[0] * x[0] * x[0] * x[0] - 5.0*x[0] * x[0] + x[0] - 1; }; //Función objetivo
-// auto constr = [&](std::vector<REAL_> &x) ->void {if (fabs(x[0]) > 30) x[0] = x[0] - 50000.0; }; //Función de penalización
+// auto Fn = [&](std::vector<REAL_> &x) ->REAL_ {return 50.0*x[0] * x[0] * x[0] * x[0] - 5.0*x[0] * x[0] + x[0] - 1; }; //FunciÃ³n objetivo
+// auto constr = [&](std::vector<REAL_> &x) ->void {if (fabs(x[0]) > 30) x[0] = x[0] - 50000.0; }; //FunciÃ³n de penalizaciÃ³n
 // 
-// TNelderMead Optim(start, 1E-8, 1); //Inicialización
-// REAL_ a = Optim.MinSearch(Fn, constr, true); //Optimización (devuelve el valor mínimo de la función objetivo
-// REAL_ b = Optim.xvalues()[0]; //Devuelve el valor de x que da el valor mínimo de la función
+// TNelderMead Optim(start, 1E-8, 1); //InicializaciÃ³n
+// REAL_ a = Optim.MinSearch(Fn, constr, true); //OptimizaciÃ³n (devuelve el valor mÃ­nimo de la funciÃ³n objetivo)
+// REAL_ b = Optim.xvalues()[0]; //Devuelve el valor de x que da el valor mÃ­nimo de la funciÃ³n
 //
 // ================================================================================== INCLUDES
 #ifndef TNELDERMEAD_H
@@ -128,7 +128,7 @@ template<size_t n>
 void TNelderMead<n>::print_iteration(const std::vector<REAL_> &f, int itr) const
 {
 
-	printf("Iteración %d\n", itr);
+	printf("IteraciÃ³n %d\n", itr);
 	for (size_t j = 0; j <= n; j++) {
 		for (size_t i = 0; i < n; i++) {
 			printf("%f %f\n", v[j][i], f[j]);
@@ -411,7 +411,7 @@ REAL_ TNelderMead<n>::MinSearch(const Function &objfunc, const Constraint &const
 		s = sqrt(s);
 		if (s < eps) break;
 
-		if (itr == MAX_IT) throw TXGen(u8"Límite de Iteraciones alcanzado", __func__);
+		if (itr == MAX_IT) throw TXGen(u8"LÃ­mite de Iteraciones alcanzado", __func__);
 	}
 	/* end main loop of the minimization */
 
